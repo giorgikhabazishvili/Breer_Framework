@@ -1,7 +1,10 @@
 <?php declare(strict_types=1);
-require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+use Breer\framework\Core\Kernel;
 use Breer\framework\Http\Request;
 
-$request = Request::getFromGlobals();
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-var_dump($request);
+$core = new Kernel();
+$response = $core->handle(Request::getFromGlobals());
+$response -> send();
